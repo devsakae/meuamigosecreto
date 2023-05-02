@@ -1,10 +1,13 @@
 import { AuthProvider } from '../context/AuthContext';
+import { MASProvider } from '../context/MASContext';
 import '../style.css';
 
 function MyApp({ Component, pageProps }: any) {
   return (
     <AuthProvider>
-      <Component { ...pageProps } />
+      <MASProvider>
+        <Component { ...pageProps } />
+      </MASProvider>
     </AuthProvider>
   )
 }

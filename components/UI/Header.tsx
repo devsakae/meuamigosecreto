@@ -5,7 +5,7 @@ type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <header className='w-full flex items-center justify-between p-4 bg-blue-400'>
+    <header className='w-full flex items-center justify-between p-4'>
       <div>
         <Link href={'/'}>
           <Image src={ logo } alt="Meu amigo secreto" height="100" />

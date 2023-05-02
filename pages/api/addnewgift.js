@@ -4,8 +4,8 @@ export default async (req, res) => {
    try {
        const client = await clientPromise;
        const db = client.db("masdatabase");
-       const { body: { title, description, value, imageUrl } } = req;
-       const payload = { title, description, value, imageUrl };
+       const { body: { user, families, title, description, value, imageUrl } } = req;
+       const payload = { user, families, title, description, value, imageUrl };
        await db
            .collection("gifts")
            .createOne(payload);
