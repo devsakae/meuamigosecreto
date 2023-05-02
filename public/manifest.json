@@ -8,9 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "applogoblue.png",
+      "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192 500x500"
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo500.png",
+      "type": "image/png",
+      "sizes": "500x500"
     }
   ],
   "start_url": ".",
