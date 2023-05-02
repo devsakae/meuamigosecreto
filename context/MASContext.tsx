@@ -1,4 +1,4 @@
-import { MouseEventHandler, createContext } from "react";
+import { MouseEventHandler, createContext, useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 
 export interface MASContextType {
@@ -6,19 +6,36 @@ export interface MASContextType {
   loading: boolean,
   signOut: MouseEventHandler,
   googleSignIn: MouseEventHandler,
+  fetchMyGifts: Function,
 }
 
 const MASContext = createContext<MASContextType | null>(null);
 
 export const MASProvider = ({ children }: any) => {
-  const { user, loading, signOut, googleSignIn } = useAuth();
+  const { user, userLoading, signOut, googleSignIn } = useAuth();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(userLoading);
+  }, [userLoading])
+
+  const fetchMyGifts = async () => {
+    try {
+      const response = await fetch('/api/getGifts');
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <MASContext.Provider value={{
       user,
       loading,
       signOut,
-      googleSignIn
+      googleSignIn,
+      fetchMyGifts,
     }}>
       { children }
     </MASContext.Provider>
