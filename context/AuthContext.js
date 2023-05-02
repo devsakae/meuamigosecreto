@@ -1,4 +1,3 @@
-import Router from 'next/router';
 import { createContext, useState } from 'react';
 import firebase from '../lib/firebase';
 
@@ -11,11 +10,18 @@ export const AuthProvider = ({ children }) => {
   const saveUser = (info) => {
     const { user: { _delegate } } = info;
     setUser(_delegate);
-    localStorage.setItem('mas_user_info', JSON.stringify(_delegate));
-    Router.push('/perfil');
   }
 
-  const githubSignIn = () => {
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(firebase.auth, (currentUser) => {
+  //     setUser(currentUser);
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   }
+  // }, []);
+
+  const githubSignIn = async () => {
     try {
       setLoading(true);
       return firebase
@@ -27,9 +33,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const githubSignOut = () => {
+  const githubSignOut = async () => {
     try {
-      Router.push('/');
       return firebase
         .auth()
         .signOut()
@@ -39,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     try {
       setLoading(true);
       return firebase

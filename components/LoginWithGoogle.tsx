@@ -4,12 +4,12 @@ import useAuth from '../hooks/useAuth';
 type Props = {}
 
 const GoogleLogin = (props: Props) => {
-  const { googleSignIn, loggedUser } = useAuth();
+  const { googleSignIn, loggedUser, githubSignOut } = useAuth();
 
   if (loggedUser) return (
     <>
       <div>Logado como { loggedUser.displayName }</div>
-      <button>Desconectar</button>
+      <button onClick={ githubSignOut }>Desconectar</button>
     </>
   );
 
