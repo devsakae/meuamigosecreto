@@ -1,22 +1,11 @@
-import useAuth from '../hooks/useAuth';
+import LoginWithGithub from '../components/LoginWithGithub';
+import LoginWithGoogle from '../components/LoginWithGoogle';
 
 export default function register() {
-  const { githubSignIn, githubSignOut, googleSignIn } = useAuth();
-
   return (
-    <>
-      <button onClick={ githubSignIn }>
-        Logar com Github
-      </button>
-      <button onClick={ githubSignOut }>
-        Deslogar Github
-      </button>
-      <button onClick={ googleSignIn }>
-        Logar com Google
-      </button>
-      {/* <button onClick={ googleSignOut }>
-        Deslogar Google
-      </button> */}
-    </>
+    <div>
+      <LoginWithGithub />            
+      <LoginWithGoogle />
+    </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Layout from '../components/UI/Layout';
 import useAuth from '../hooks/useAuth';
 
 export default function perfil() {
@@ -7,15 +8,15 @@ export default function perfil() {
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const localUser = loggedUser || JSON.parse(localStorage.getItem('mas_user_info'));
-      setUser(localUser);
+      const localUser = localStorage.getItem('mas_user_info') || '';
+      const getUser = loggedUser || JSON.parse(localUser);
+      setUser(getUser);
     }
   }, [])
 
   return (
-    <div>
+    <Layout>
       <h2>Perfil</h2>
-      { user ? `Bem vindo(a), ${ user?.displayName }` : 'Bem vindo(a), visitante.' }
-    </div>
+    </Layout>
   )
 }
